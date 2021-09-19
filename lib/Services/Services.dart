@@ -33,7 +33,7 @@ class Services{
       if(200==response.statusCode){
         var result = flightChartFromJson(response.body);
         print(result.data[0].arrivalTime);
-        return result;
+        chartResult=result;
       }else {
         print(response.statusCode);
       }

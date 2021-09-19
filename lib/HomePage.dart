@@ -14,6 +14,7 @@ import 'dart:convert';
 import 'module/LoginResult_Module.dart';
 
 String userId;
+bool showChartSpinner=true;
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
 
@@ -66,6 +67,7 @@ class _HomePageState extends State<HomePage> {
           setState(() {
             chartCounter=result.data.length;
             chartResult=result;
+            showChartSpinner=false;
 
           });
         return result;
@@ -89,22 +91,23 @@ class _HomePageState extends State<HomePage> {
         var result=await loginResultFromJson(response.body);
         userId=result.data.userId;
         print(result.data.userId);
-        print("başarılıı");
+
         setState(()async {
-          selectedPage=SelectedPage.Ticket;
+
 
           showSpinner=false;
           Navigator.pop(context);
           SharedPreferences prefs =
           await SharedPreferences.getInstance();
           await prefs.setString('userId', result.data.userId);
+          selectedPage=SelectedPage.Ticket;
 
         });
       }else{
         showSpinner=false;
       }
     }else{
-      print("yanlışşş");
+
 
       showSpinner=false;
     }
@@ -226,7 +229,7 @@ class _HomePageState extends State<HomePage> {
     }
 
 
-    return Scaffold(
+    return chartResult!=null? Scaffold(
       appBar: AppBar(
         title: Text(
           'Test APP ',
@@ -327,7 +330,31 @@ class _HomePageState extends State<HomePage> {
 
 
 
-    );
+    ):Scaffold( appBar: AppBar(
+      title: Text(
+        'Test APP ',
+        style: TextStyle(
+          color: Colors.white,
+          fontFamily: 'FredokaOne',
+          fontSize: 18.0,
+          letterSpacing: 1.0,
+          wordSpacing: 2.0,
+        ),
+      ),
+      centerTitle: true,
+      automaticallyImplyLeading: false,
+      leading: IconButton(
+        icon: Icon(
+          Icons.directions_bus,
+          color: Colors.white,
+          size: 30,
+
+        ),
+        onPressed: () => Navigator.of(context).pop(),
+      ),
+      backgroundColor: Color(0xFFFE5301),
+      elevation: 0.0,
+    ),body: Center(child: Text("Loading"),));
   }
 }
 

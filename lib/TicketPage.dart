@@ -51,7 +51,8 @@ class _TicketPageState extends State<TicketPage> {
 
 
 
-        body:Container(
+        body:ticketDetailsResult!=null?
+        Container(
           margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width*0.089,
             MediaQuery.of(context).size.height * 0.045,
             MediaQuery.of(context).size.width*0.089,
@@ -309,7 +310,7 @@ class _TicketPageState extends State<TicketPage> {
 
 
 
-        )
+        ):Center(child: Text("Loading"),)
     );
   }
 }
