@@ -330,31 +330,34 @@ class _HomePageState extends State<HomePage> {
 
 
 
-    ):Scaffold( appBar: AppBar(
-      title: Text(
-        'Test APP ',
-        style: TextStyle(
-          color: Colors.white,
-          fontFamily: 'FredokaOne',
-          fontSize: 18.0,
-          letterSpacing: 1.0,
-          wordSpacing: 2.0,
+    ):ModalProgressHUD(
+      inAsyncCall: true,
+      child: Scaffold( appBar: AppBar(
+        title: Text(
+          'Test APP ',
+          style: TextStyle(
+            color: Colors.white,
+            fontFamily: 'FredokaOne',
+            fontSize: 18.0,
+            letterSpacing: 1.0,
+            wordSpacing: 2.0,
+          ),
         ),
-      ),
-      centerTitle: true,
-      automaticallyImplyLeading: false,
-      leading: IconButton(
-        icon: Icon(
-          Icons.directions_bus,
-          color: Colors.white,
-          size: 30,
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: Icon(
+            Icons.directions_bus,
+            color: Colors.white,
+            size: 30,
 
+          ),
+          onPressed: () => Navigator.of(context).pop(),
         ),
-        onPressed: () => Navigator.of(context).pop(),
-      ),
-      backgroundColor: Color(0xFFFE5301),
-      elevation: 0.0,
-    ),body: Center(child: Text("Loading"),));
+        backgroundColor: Color(0xFFFE5301),
+        elevation: 0.0,
+      ),body: Center(child: Text("Loading"),)),
+    );
   }
 }
 
